@@ -3644,15 +3644,15 @@
     color: #337ab7;
  }
 
- .article-trigger h2::before {
-   font-weight: 600;
-   content: '#';
- }
+ /*.article-trigger h2::before {*/
+ /*  font-weight: 600;*/
+ /*  content: '#';*/
+ /*}*/
  
- .article-trigger h3::before {
-   font-weight: 500;
-   content: '##';
- }
+ /*.article-trigger h3::before {*/
+ /*  font-weight: 500;*/
+ /*  content: '##';*/
+ /*}*/
 
  .article-trigger a {
    color: #5085ff;
