@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/header::head-fragment"></head>
+<body id="blog">
+<div th:replace="blog/header::nav-fragment"></div>
+<header th:fragment="header-fragment" class="intro-header"
+        th:style="'background-image:url(' + @{/blog/images/header.jpg} + ');'">
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <span class="subheading">
+                      只要想起一生中后悔的事，梅花就落满了南山
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</header>
+<div class="am-g am-g-fixed blog-fixed">
+    <div class="am-u-lg-6 am-u-sm-12">
+        <main class="links-list">
+            <b>我是yc，一个野生开发者</b>
+            <ul>
+                <li>喜欢打游戏，喜欢宅</li>
+                <li>业余的足球巨星，呛水的游泳健将</li>
+                <li>平生嗜好繁多，其中最爱猎奇漫画和科幻小说</li>
+                <li>差点忘了，还有德云社的评书和相声</li>
+                <li>日出而作，日落不息，愿为binary的世界添一片瓦</li>
+            </ul>
+            <br>
+            <br>
+            <p style="margin-bottom: 0px">这里是我悄悄开垦的小破站，负责记录生活和学习中的点滴，也转载一些我自以为有趣的文章。如果你有任何想法或意见，欢迎通过以下方式联系我：</p>
+            <ul>
+                <li>邮箱1: yuchengwto@163.com</li>
+                <li>邮箱2: yuchengscu@gmail.com</li>
+                <li>微信: yucheng261370</li>
+                <li>Github: <a href="https://github.com/yuchengwto">https://github.com/yuchengwto</a></li>
+            </ul>
+        </main>
+    </div>
+    <div class="am-u-lg-6 am-u-sm-12">
+        <img th:src="@{/blog/images/greycat.jpg}">
+    </div>
+</div>
+<!-- 引入页脚footer-fragment -->
+<footer th:replace="blog/footer::footer-fragment"></footer>
+</body>
+</html>
