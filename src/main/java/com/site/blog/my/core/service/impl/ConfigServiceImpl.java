@@ -27,7 +27,7 @@ public class ConfigServiceImpl implements ConfigService {
     public static final String yourName = "yucheng";
 
     public static final String footerAbout = "双手劳动，慰藉心灵";
-    public static final String footerICP = "没有备案";
+    public static final String footerICP = null;
     public static final String footerCopyRight = "2019 Habsblog";
     public static final String footerPoweredBy = "https://github.com/yuchengwto";
     public static final String footerPoweredByURL = "https://github.com/yuchengwto";

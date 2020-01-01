@@ -38,7 +38,7 @@ CREATE TABLE `tb_admin_user` (
 
 LOCK TABLES `tb_admin_user` WRITE;
 /*!40000 ALTER TABLE `tb_admin_user` DISABLE KEYS */;
-INSERT INTO `tb_admin_user` VALUES (1,'yuchengwto','aaca6c61a0a28a0b3a0fed606828de01','yucheng',0);
+INSERT INTO `tb_admin_user` VALUES (1,'admin','21232f297a57a5a743894a0e4a801fc3','yucheng',0);
 /*!40000 ALTER TABLE `tb_admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +222,7 @@ DROP TABLE IF EXISTS `tb_link`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_link` (
   `link_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '友链表主键id',
-  `link_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '友链类别 0-友链 1-推荐 2-个人网站',
+  `link_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '友链类别 0-友链 1-推荐 2-私藏',
   `link_name` varchar(50) NOT NULL COMMENT '网站名称',
   `link_url` varchar(100) NOT NULL COMMENT '网站链接',
   `link_description` varchar(100) NOT NULL COMMENT '网站描述',

@@ -3,13 +3,16 @@
 <footer class="footer blog-footer" th:fragment="footer-fragment">
     <div class="blog-text-center">
         <div>
-            &heartsuit;<span th:text="${configurations.get('footerAbout')}">my home</span>&heartsuit;
+            &heartsuit;<span th:text="${configurations.get('footerAbout')}">i love u</span>&heartsuit;
         </div>
         <div>
             &copy;<strong><a th:href="@{/}" th:text="${configurations.get('footerCopyRight')}">2019 habsblog</a></strong>&nbsp;All rights reserved
         </div>
         <div>
             Powered by <a th:href="${configurations.get('footerPoweredByURL')}" target="_blank" th:text="${configurations.get('footerPoweredBy')}">github</a>&nbsp;
+        </div>
+        <div th:if="${configurations.get('footerICP') != null}">
+            备案号: <span th:text="${configurations.get('footerICP')}"></span>
         </div>
     </div>
 </footer>

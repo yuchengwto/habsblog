@@ -183,16 +183,16 @@ public class MyBlogController {
 
 
     /**
-     * 友情链接页
+     * 链接页
      *
      * @return
      */
     @GetMapping({"/link"})
     public String link(HttpServletRequest request) {
-        request.setAttribute("pageName", "友情链接");
+        request.setAttribute("pageName", "链接");
         Map<Byte, List<BlogLink>> linkMap = linkService.getLinksForLinkPage();
         if (linkMap != null) {
-            //判断友链类别并封装数据 0-友链 1-推荐 2-个人网站
+            //判断友链类别并封装数据 0-友链 1-推荐 2-私藏
             if (linkMap.containsKey((byte) 0)) {
                 request.setAttribute("favoriteLinks", linkMap.get((byte) 0));
             }
