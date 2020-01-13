@@ -16,9 +16,9 @@
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
     </resultMap>
     <sql id="Base_Column_List">
-    comment_id, blog_id, commentator, email, website_url, comment_body, comment_create_time, 
-    commentator_ip, reply_body, reply_create_time, comment_status, is_deleted
-  </sql>
+        comment_id, blog_id, commentator, email, website_url, comment_body, comment_create_time,
+        commentator_ip, reply_body, reply_create_time, comment_status, is_deleted
+    </sql>
     <select id="findBlogCommentList" parameterType="Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

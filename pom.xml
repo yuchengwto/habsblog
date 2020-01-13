@@ -57,6 +57,7 @@
             <version>0.13.1</version>
         </dependency>
         <!-- commonmark table -->
+
         <dependency>
             <groupId>com.atlassian.commonmark</groupId>
             <artifactId>commonmark-ext-gfm-tables</artifactId>

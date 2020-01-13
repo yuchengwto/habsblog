@@ -215,7 +215,7 @@ public class MyBlogController {
     public Result comment(HttpServletRequest request, HttpSession session,
                           @RequestParam Long blogId, @RequestParam String verifyCode,
                           @RequestParam String commentator, @RequestParam String email,
-                          @RequestParam String websiteUrl, @RequestParam String commentBody) {
+                          @RequestParam String commentBody) {
         if (StringUtils.isEmpty(verifyCode)) {
             return ResultGenerator.genFailResult("验证码不能为空");
         }
@@ -236,10 +236,7 @@ public class MyBlogController {
         if (StringUtils.isEmpty(commentator)) {
             return ResultGenerator.genFailResult("请输入称呼");
         }
-        if (StringUtils.isEmpty(email)) {
-            return ResultGenerator.genFailResult("请输入邮箱地址");
-        }
-        if (!PatternUtil.isEmail(email)) {
+        if (!StringUtils.isEmpty(email) && !PatternUtil.isEmail(email)) {
             return ResultGenerator.genFailResult("请输入正确的邮箱地址");
         }
         if (StringUtils.isEmpty(commentBody)) {
@@ -251,10 +248,10 @@ public class MyBlogController {
         BlogComment comment = new BlogComment();
         comment.setBlogId(blogId);
         comment.setCommentator(MyBlogUtils.cleanString(commentator));
-        comment.setEmail(email);
-        if (PatternUtil.isURL(websiteUrl)) {
-            comment.setWebsiteUrl(websiteUrl);
+        if (PatternUtil.isEmail(email)) {
+            comment.setEmail(email);
         }
+        comment.setCommentStatus((byte) 1);
         comment.setCommentBody(MyBlogUtils.cleanString(commentBody));
         return ResultGenerator.genSuccessResult(commentService.addComment(comment));
     }

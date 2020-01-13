@@ -80,7 +80,7 @@
             <th:block th:each="comment,iterStat : ${commentPageResult.list}">
                 <article class="comment">
                     <header class="clearfix">
-                        <img th:src="@{/blog/images/jerry.png}" class="avatar">
+                        <img th:src="@{/blog/images/mario.png}" class="avatar">
                         <div class="meta">
                             <h3 th:text="${comment.commentator}"></h3>
                             <span class="date">评论时间：
@@ -125,7 +125,7 @@
                 <li th:if="${commentPageResult.currPage-1 >=1}"><a
                         th:href="@{'/blog/'+${blogDetailVO.blogId}+'?commentPage=' + ${commentPageResult.currPage-1}+'#comments'}"
                         th:text="${commentPageResult.currPage -1}">1</a></li>
-                <li class="active"><a href="#" th:text="${commentPageResult.currPage}">1</a></li>
+                <li class="active"><a href="#comments" th:text="${commentPageResult.currPage}">1</a></li>
                 <li th:if="${commentPageResult.currPage+1 <=commentPageResult.totalPage}"><a
                         th:href="@{'/blog/'+${blogDetailVO.blogId}+'?commentPage=' + ${commentPageResult.currPage+1}+'#comments'}"
                         th:text="${commentPageResult.currPage +1}">1</a></li>
@@ -149,18 +149,13 @@
                 <tbody>
                 <tr>
                     <td>
-                        <input type="hidden" id="blogId" name="blogId" th:value="${blogDetailVO.blogId}"></input>
-                        <input type="text" name="commentator" id="commentator" placeholder="(*必填)怎么称呼你?">
+                        <input type="hidden" id="blogId" name="blogId" th:value="${blogDetailVO.blogId}">
+                        <input type="text" name="commentator" id="commentator" placeholder="(*必填)俺该怎么称呼你?">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="email" name="email" id="email" placeholder="(*必填)你的联系邮箱">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" name="websiteUrl" id="websiteUrl" placeholder="你的网站地址(可不填)">
+                        <input type="email" name="email" id="email" placeholder="(*选填)你的联系邮箱">
                     </td>
                 </tr>
                 <tr>
@@ -174,7 +169,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <textarea rows="5" name="commentBody" id="commentBody" placeholder="(*必填)请输入你的评论"></textarea>
+                        <textarea rows="5" name="commentBody" id="commentBody" placeholder="说点啥好呢"></textarea>
                     </td>
                 </tr>
                 <tr>
