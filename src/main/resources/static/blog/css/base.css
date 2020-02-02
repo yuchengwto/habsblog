@@ -1711,10 +1711,6 @@
    border-radius: 4px;
  }
  
- .am-pagination .am-pagination-next {
-   float: right;
- }
- 
  .am-pagination .am-pagination-next a {
    border-radius: 4px;
  }
@@ -2284,6 +2280,7 @@
    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
    font-weight: 300;
    margin: 0 auto;
+   text-align: left
  }
  
  @media only screen and (min-width: 768px) {
