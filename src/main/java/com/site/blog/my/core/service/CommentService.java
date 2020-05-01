@@ -56,4 +56,11 @@ public interface CommentService {
      * @return
      */
     PageResult getCommentPageByBlogIdAndPageNum(Long blogId, int page);
+
+    /**
+     * 直接获取评论，即留言
+     * @param page
+     * @return
+     */
+    PageResult getCommentPageByPageNum(int page);
 }

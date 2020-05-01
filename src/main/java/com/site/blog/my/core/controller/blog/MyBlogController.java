@@ -188,8 +188,7 @@ public class MyBlogController {
      * @return
      */
     @GetMapping({"/link"})
-    public String link(HttpServletRequest request) {
-        request.setAttribute("pageName", "链接");
+    public String link(HttpServletRequest request, @RequestParam(value = "commentPage", required = false, defaultValue = "1") Integer commentPage) {
         Map<Byte, List<BlogLink>> linkMap = linkService.getLinksForLinkPage();
         if (linkMap != null) {
             //判断友链类别并封装数据 0-友链 1-推荐 2-私藏
@@ -203,6 +202,8 @@ public class MyBlogController {
                 request.setAttribute("personalLinks", linkMap.get((byte) 2));
             }
         }
+        request.setAttribute("commentPageResult", commentService.getCommentPageByPageNum(commentPage));
+        request.setAttribute("pageName", "树洞");
         request.setAttribute("configurations", configService.getAllConfigs());
         return "blog/link";
     }

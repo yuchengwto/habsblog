@@ -79,4 +79,24 @@ public class CommentServiceImpl implements CommentService {
         }
         return null;
     }
+
+    @Override
+    public PageResult getCommentPageByPageNum(int page) {
+        if (page < 1) {
+            return null;
+        }
+        Map params = new HashMap();
+        params.put("page", page);
+        //每页8条
+        params.put("limit", 8);
+        params.put("commentStatus", 1);     //过滤审核通过的数据
+        PageQueryUtil pageUtil = new PageQueryUtil(params);
+        List<BlogComment> comments = blogCommentMapper.findLinkCommentList(pageUtil);
+        if (!CollectionUtils.isEmpty(comments)) {
+            int total = blogCommentMapper.getTotalLinkComments(pageUtil);
+            PageResult pageResult = new PageResult(comments, total, pageUtil.getLimit(), pageUtil.getPage());
+            return pageResult;
+        }
+        return null;
+    }
 }

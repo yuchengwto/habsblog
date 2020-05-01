@@ -35,6 +35,20 @@
             limit #{start},#{limit}
         </if>
     </select>
+    <select id="findLinkCommentList" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_blog_comment
+        where is_deleted=0
+        and blog_id = 99999
+        <if test="commentStatus!=null">
+            and comment_status = #{commentStatus}
+        </if>
+        order by comment_id desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
 
     <select id="getTotalBlogComments" parameterType="Map" resultType="int">
         select count(*) from tb_blog_comment
@@ -42,6 +56,14 @@
         <if test="blogId!=null">
             AND blog_id = #{blogId}
         </if>
+        <if test="commentStatus!=null">
+            AND comment_status = #{commentStatus}
+        </if>
+    </select>
+    <select id="getTotalLinkComments" parameterType="Map" resultType="int">
+        select count(*) from tb_blog_comment
+        where is_deleted=0
+        AND blog_id = 99999
         <if test="commentStatus!=null">
             AND comment_status = #{commentStatus}
         </if>

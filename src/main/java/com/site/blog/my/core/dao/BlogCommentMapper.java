@@ -19,7 +19,11 @@ public interface BlogCommentMapper {
 
     List<BlogComment> findBlogCommentList(Map map);
 
+    List<BlogComment> findLinkCommentList(Map map);
+
     int getTotalBlogComments(Map map);
+
+    int getTotalLinkComments(Map map);
 
     int checkDone(Integer[] ids);
 
