@@ -1,7 +1,6 @@
 package com.site.blog.my.core.controller.blog;
 
 import com.site.blog.my.core.controller.vo.BlogDetailVO;
-import com.site.blog.my.core.entity.BlogComment;
 import com.site.blog.my.core.entity.BlogLink;
 import com.site.blog.my.core.service.*;
 import com.site.blog.my.core.util.*;
@@ -26,8 +25,6 @@ public class MyBlogController {
     private TagService tagService;
     @Resource
     private LinkService linkService;
-    @Resource
-    private CommentService commentService;
     @Resource
     private ConfigService configService;
     @Resource
@@ -83,11 +80,10 @@ public class MyBlogController {
      * @return
      */
     @GetMapping({"/blog/{blogId}", "/article/{blogId}"})
-    public String detail(HttpServletRequest request, @PathVariable("blogId") Long blogId, @RequestParam(value = "commentPage", required = false, defaultValue = "1") Integer commentPage) {
+    public String detail(HttpServletRequest request, @PathVariable("blogId") Long blogId) {
         BlogDetailVO blogDetailVO = blogService.getBlogDetail(blogId);
         if (blogDetailVO != null) {
             request.setAttribute("blogDetailVO", blogDetailVO);
-            request.setAttribute("commentPageResult", commentService.getCommentPageByBlogIdAndPageNum(blogId, commentPage));
         }
         request.setAttribute("pageName", "详情");
         request.setAttribute("configurations", configService.getAllConfigs());
@@ -188,7 +184,7 @@ public class MyBlogController {
      * @return
      */
     @GetMapping({"/link"})
-    public String link(HttpServletRequest request, @RequestParam(value = "commentPage", required = false, defaultValue = "1") Integer commentPage) {
+    public String link(HttpServletRequest request) {
         Map<Byte, List<BlogLink>> linkMap = linkService.getLinksForLinkPage();
         if (linkMap != null) {
             //判断友链类别并封装数据 0-友链 1-推荐 2-私藏
@@ -202,59 +198,9 @@ public class MyBlogController {
                 request.setAttribute("personalLinks", linkMap.get((byte) 2));
             }
         }
-        request.setAttribute("commentPageResult", commentService.getCommentPageByPageNum(commentPage));
         request.setAttribute("pageName", "树洞");
         request.setAttribute("configurations", configService.getAllConfigs());
         return "blog/link";
-    }
-
-    /**
-     * 评论操作
-     */
-    @PostMapping(value = "/blog/comment")
-    @ResponseBody
-    public Result comment(HttpServletRequest request, HttpSession session,
-                          @RequestParam Long blogId, @RequestParam String verifyCode,
-                          @RequestParam String commentator, @RequestParam String email,
-                          @RequestParam String commentBody) {
-        if (StringUtils.isEmpty(verifyCode)) {
-            return ResultGenerator.genFailResult("验证码不能为空");
-        }
-        String kaptchaCode = session.getAttribute("verifyCode") + "";
-        if (StringUtils.isEmpty(kaptchaCode)) {
-            return ResultGenerator.genFailResult("非法请求");
-        }
-        if (!verifyCode.equals(kaptchaCode)) {
-            return ResultGenerator.genFailResult("验证码错误");
-        }
-        String ref = request.getHeader("Referer");
-        if (StringUtils.isEmpty(ref)) {
-            return ResultGenerator.genFailResult("非法请求");
-        }
-        if (null == blogId || blogId < 0) {
-            return ResultGenerator.genFailResult("非法请求");
-        }
-        if (StringUtils.isEmpty(commentator)) {
-            return ResultGenerator.genFailResult("请输入称呼");
-        }
-        if (!StringUtils.isEmpty(email) && !PatternUtil.isEmail(email)) {
-            return ResultGenerator.genFailResult("请输入正确的邮箱地址");
-        }
-        if (StringUtils.isEmpty(commentBody)) {
-            return ResultGenerator.genFailResult("请输入评论内容");
-        }
-        if (commentBody.trim().length() > 200) {
-            return ResultGenerator.genFailResult("评论内容过长");
-        }
-        BlogComment comment = new BlogComment();
-        comment.setBlogId(blogId);
-        comment.setCommentator(MyBlogUtils.cleanString(commentator));
-        if (PatternUtil.isEmail(email)) {
-            comment.setEmail(email);
-        }
-        comment.setCommentStatus((byte) 1);
-        comment.setCommentBody(MyBlogUtils.cleanString(commentBody));
-        return ResultGenerator.genSuccessResult(commentService.addComment(comment));
     }
 
     /**

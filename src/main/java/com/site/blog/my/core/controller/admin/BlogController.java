@@ -84,8 +84,7 @@ public class BlogController {
                        @RequestParam("blogTags") String blogTags,
                        @RequestParam("blogContent") String blogContent,
                        @RequestParam("blogCoverImage") String blogCoverImage,
-                       @RequestParam("blogStatus") Byte blogStatus,
-                       @RequestParam("enableComment") Byte enableComment) {
+                       @RequestParam("blogStatus") Byte blogStatus) {
         if (StringUtils.isEmpty(blogTitle)) {
             return ResultGenerator.genFailResult("请输入文章标题");
         }
@@ -118,7 +117,6 @@ public class BlogController {
         blog.setBlogContent(blogContent);
         blog.setBlogCoverImage(blogCoverImage);
         blog.setBlogStatus(blogStatus);
-        blog.setEnableComment(enableComment);
         String saveBlogResult = blogService.saveBlog(blog);
         if ("success".equals(saveBlogResult)) {
             return ResultGenerator.genSuccessResult("添加成功");
@@ -136,8 +134,7 @@ public class BlogController {
                          @RequestParam("blogTags") String blogTags,
                          @RequestParam("blogContent") String blogContent,
                          @RequestParam("blogCoverImage") String blogCoverImage,
-                         @RequestParam("blogStatus") Byte blogStatus,
-                         @RequestParam("enableComment") Byte enableComment) {
+                         @RequestParam("blogStatus") Byte blogStatus) {
         if (StringUtils.isEmpty(blogTitle)) {
             return ResultGenerator.genFailResult("请输入文章标题");
         }
@@ -171,7 +168,6 @@ public class BlogController {
         blog.setBlogContent(blogContent);
         blog.setBlogCoverImage(blogCoverImage);
         blog.setBlogStatus(blogStatus);
-        blog.setEnableComment(enableComment);
         String updateBlogResult = blogService.updateBlog(blog);
         if ("success".equals(updateBlogResult)) {
             return ResultGenerator.genSuccessResult("修改成功");

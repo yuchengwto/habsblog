@@ -23,8 +23,6 @@ public class Blog {
 
     private Long blogViews;
 
-    private Byte enableComment;
-
     private Byte isDeleted;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -106,14 +104,6 @@ public class Blog {
         this.blogViews = blogViews;
     }
 
-    public Byte getEnableComment() {
-        return enableComment;
-    }
-
-    public void setEnableComment(Byte enableComment) {
-        this.enableComment = enableComment;
-    }
-
     public Byte getIsDeleted() {
         return isDeleted;
     }
@@ -161,7 +151,6 @@ public class Blog {
         sb.append(", blogTags=").append(blogTags);
         sb.append(", blogStatus=").append(blogStatus);
         sb.append(", blogViews=").append(blogViews);
-        sb.append(", enableComment=").append(enableComment);
         sb.append(", isDeleted=").append(isDeleted);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);

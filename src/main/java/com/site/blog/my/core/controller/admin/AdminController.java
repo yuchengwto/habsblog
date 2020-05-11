@@ -26,8 +26,6 @@ public class AdminController {
     @Resource
     private TagService tagService;
     @Resource
-    private CommentService commentService;
-    @Resource
     private ConfigService configService;
 
 
@@ -43,7 +41,6 @@ public class AdminController {
         request.setAttribute("blogCount", blogService.getTotalBlogs());
         request.setAttribute("linkCount", linkService.getTotalLinks());
         request.setAttribute("tagCount", tagService.getTotalTags());
-        request.setAttribute("commentCount", commentService.getTotalComments());
         return "admin/index";
     }
 
@@ -70,7 +67,7 @@ public class AdminController {
             session.setAttribute("loginUser", adminUser.getNickName());
             session.setAttribute("loginUserId", adminUser.getAdminUserId());
             //session过期时间设置为7200秒 即两小时
-            //session.setMaxInactiveInterval(60 * 60 * 2);
+            session.setMaxInactiveInterval(60 * 60 * 2);
             return "redirect:/admin/index";
         } else {
             session.setAttribute("errorMsg", "登陆失败");

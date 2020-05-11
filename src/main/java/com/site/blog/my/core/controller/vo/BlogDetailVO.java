@@ -10,8 +10,6 @@ public class BlogDetailVO {
 
     private Integer blogCategoryId;
 
-    private Integer commentCount;
-
     private String blogCategoryIcon;
 
     private String blogCategoryName;
@@ -23,8 +21,6 @@ public class BlogDetailVO {
     private List<String> blogTags;
 
     private String blogContent;
-
-    private Byte enableComment;
 
     private Date createTime;
 
@@ -90,22 +86,6 @@ public class BlogDetailVO {
 
     public void setBlogContent(String blogContent) {
         this.blogContent = blogContent;
-    }
-
-    public Integer getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(Integer commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    public Byte getEnableComment() {
-        return enableComment;
-    }
-
-    public void setEnableComment(Byte enableComment) {
-        this.enableComment = enableComment;
     }
 
     public Date getCreateTime() {

@@ -125,14 +125,6 @@
                                     <input name="blogStatus" type="radio" id="draft" value="0"
                                            th:checked="${null !=blog and null !=blog.blogStatus and blog.blogStatus==0} ?true:false"/>&nbsp;草稿&nbsp;
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label">是否允许评论:&nbsp;</label>
-                                    <input name="enableComment" type="radio" id="enableCommentTrue" checked=true
-                                           th:checked="${null==blog||(null !=blog and null !=blog.enableComment and blog.enableComment==0)} ?true:false"
-                                           value="0"/>&nbsp;是&nbsp;
-                                    <input name="enableComment" type="radio" id="enableCommentFalse" value="1"
-                                           th:checked="${null !=blog and null !=blog.enableComment and blog.enableComment==1} ?true:false"/>&nbsp;否&nbsp;
-                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">

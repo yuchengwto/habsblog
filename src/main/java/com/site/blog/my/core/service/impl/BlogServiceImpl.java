@@ -34,8 +34,6 @@ public class BlogServiceImpl implements BlogService {
     private BlogTagMapper tagMapper;
     @Autowired
     private BlogTagRelationMapper blogTagRelationMapper;
-    @Autowired
-    private BlogCommentMapper blogCommentMapper;
 
     @Override
     @Transactional
@@ -142,7 +140,6 @@ public class BlogServiceImpl implements BlogService {
         blogForUpdate.setBlogContent(blog.getBlogContent());
         blogForUpdate.setBlogCoverImage(blog.getBlogCoverImage());
         blogForUpdate.setBlogStatus(blog.getBlogStatus());
-        blogForUpdate.setEnableComment(blog.getEnableComment());
         BlogCategory blogCategory = categoryMapper.selectByPrimaryKey(blog.getBlogCategoryId());
         if (blogCategory == null) {
             blogForUpdate.setBlogCategoryId(0);
@@ -342,11 +339,6 @@ public class BlogServiceImpl implements BlogService {
                 List<String> tags = Arrays.asList(blog.getBlogTags().split(","));
                 blogDetailVO.setBlogTags(tags);
             }
-            //设置评论数
-            Map params = new HashMap();
-            params.put("blogId", blog.getBlogId());
-            params.put("commentStatus", 1);//过滤审核通过的数据
-            blogDetailVO.setCommentCount(blogCommentMapper.getTotalBlogComments(params));
             return blogDetailVO;
         }
         return null;

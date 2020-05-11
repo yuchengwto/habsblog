@@ -11,7 +11,6 @@
         <result column="blog_tags" jdbcType="VARCHAR" property="blogTags"/>
         <result column="blog_status" jdbcType="TINYINT" property="blogStatus"/>
         <result column="blog_views" jdbcType="BIGINT" property="blogViews"/>
-        <result column="enable_comment" jdbcType="TINYINT" property="enableComment"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
@@ -123,13 +122,12 @@
     <insert id="insert" parameterType="com.site.blog.my.core.entity.Blog">
     insert into tb_blog (blog_id, blog_title, blog_sub_url, 
       blog_cover_image, blog_category_id, blog_category_name, 
-      blog_tags, blog_status, blog_views, 
-      enable_comment, is_deleted, create_time, 
+      blog_tags, blog_status, blog_views, is_deleted, create_time,
       update_time, blog_content)
     values (#{blogId,jdbcType=BIGINT}, #{blogTitle,jdbcType=VARCHAR}, #{blogSubUrl,jdbcType=VARCHAR}, 
       #{blogCoverImage,jdbcType=VARCHAR}, #{blogCategoryId,jdbcType=INTEGER}, #{blogCategoryName,jdbcType=VARCHAR}, 
       #{blogTags,jdbcType=VARCHAR}, #{blogStatus,jdbcType=TINYINT}, #{blogViews,jdbcType=BIGINT}, 
-      #{enableComment,jdbcType=TINYINT}, #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{blogContent,jdbcType=LONGVARCHAR})
   </insert>
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="blogId"
@@ -162,9 +160,6 @@
             </if>
             <if test="blogViews != null">
                 blog_views,
-            </if>
-            <if test="enableComment != null">
-                enable_comment,
             </if>
             <if test="isDeleted != null">
                 is_deleted,
@@ -206,9 +201,6 @@
             </if>
             <if test="blogViews != null">
                 #{blogViews,jdbcType=BIGINT},
-            </if>
-            <if test="enableComment != null">
-                #{enableComment,jdbcType=TINYINT},
             </if>
             <if test="isDeleted != null">
                 #{isDeleted,jdbcType=TINYINT},
@@ -254,9 +246,6 @@
             <if test="blogViews != null">
                 blog_views = #{blogViews,jdbcType=BIGINT},
             </if>
-            <if test="enableComment != null">
-                enable_comment = #{enableComment,jdbcType=TINYINT},
-            </if>
             <if test="isDeleted != null">
                 is_deleted = #{isDeleted,jdbcType=TINYINT},
             </if>
@@ -282,7 +271,6 @@
       blog_tags = #{blogTags,jdbcType=VARCHAR},
       blog_status = #{blogStatus,jdbcType=TINYINT},
       blog_views = #{blogViews,jdbcType=BIGINT},
-      enable_comment = #{enableComment,jdbcType=TINYINT},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -299,7 +287,6 @@
       blog_tags = #{blogTags,jdbcType=VARCHAR},
       blog_status = #{blogStatus,jdbcType=TINYINT},
       blog_views = #{blogViews,jdbcType=BIGINT},
-      enable_comment = #{enableComment,jdbcType=TINYINT},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}

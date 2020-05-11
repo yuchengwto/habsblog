@@ -147,7 +147,6 @@ $('#saveButton').click(function () {
     var blogContent = blogEditor.getMarkdown();
     var blogCoverImage = $('#blogCoverImage')[0].src;
     var blogStatus = $("input[name='blogStatus']:checked").val();
-    var enableComment = $("input[name='enableComment']:checked").val();
     if (isNull(blogCoverImage) || blogCoverImage.indexOf('img-upload') != -1) {
         swal("封面图片不能为空", {
             icon: "error",
@@ -158,8 +157,7 @@ $('#saveButton').click(function () {
     var swlMessage = '保存成功';
     var data = {
         "blogTitle": blogTitle, "blogSubUrl": blogSubUrl, "blogCategoryId": blogCategoryId,
-        "blogTags": blogTags, "blogContent": blogContent, "blogCoverImage": blogCoverImage, "blogStatus": blogStatus,
-        "enableComment": enableComment
+        "blogTags": blogTags, "blogContent": blogContent, "blogCoverImage": blogCoverImage, "blogStatus": blogStatus
     };
     if (blogId > 0) {
         url = '/admin/blogs/update';
@@ -172,8 +170,7 @@ $('#saveButton').click(function () {
             "blogTags": blogTags,
             "blogContent": blogContent,
             "blogCoverImage": blogCoverImage,
-            "blogStatus": blogStatus,
-            "enableComment": enableComment
+            "blogStatus": blogStatus
         };
     }
     console.log(data);
